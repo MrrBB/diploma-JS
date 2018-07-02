@@ -1,14 +1,14 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 window.addEventListener('DOMContentLoaded', function() {
-	let slider = require('../parts/slider.js');
+	// let slider = require('../parts/slider.js');
 	let modal = require('../parts/modal.js');
 	let ajax = require('../parts/ajax.js');
 
-	slider();
+	// slider();
 	modal();
 	ajax();
 })	
-},{"../parts/ajax.js":2,"../parts/modal.js":3,"../parts/slider.js":4}],2:[function(require,module,exports){
+},{"../parts/ajax.js":2,"../parts/modal.js":3}],2:[function(require,module,exports){
 function ajax(){
 	
 	let message = new Object();
@@ -89,6 +89,7 @@ function modal(){
 	 	prisePopup = document.querySelector(".popup-gift"),
 	 	priseClose = document.getElementsByClassName("popup-close")[1];
 
+function popupFunctions(buttons, popup_design, popup_close){
 	for (var i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener("click", function(){
 	 		popup_design.style.display = "block";
@@ -105,24 +106,13 @@ function modal(){
 			document.body.style.overflow = '';	
 		}
 	})
+}
 
-	for (var i = 0; i < consultation.length; i++) {
-		consultation[i].addEventListener("click", function(){
-	 	consultationOverlay.style.display = "block";
-		document.body.style.overflow = 'hidden';	 		
-	 	})
-	}
-	consultationClose.addEventListener("click", function() {
-		consultationOverlay.style.display = "none";
-		document.body.style.overflow = '';		    
-	})  
+popupFunctions(buttons, popup_design, popup_close);
+popupFunctions(consultation, consultationOverlay, consultationClose);
 
-	window.addEventListener("click", function(e){
-		if(e.target == consultationOverlay) {
-			consultationOverlay.style.display = "none";
-			document.body.style.overflow = '';	
-		}
-	})
+
+
 	prise.addEventListener("click", function() {
 		prise.style.display = "none";
 		prisePopup.style.display = "block";
@@ -157,54 +147,4 @@ loadButton.addEventListener("click", function(){
 
 }
 module.exports = modal;
-},{}],4:[function(require,module,exports){
-function slider() {
-
-	let slideIndex = 1,
-	slides = document.getElementsByClassName('main-slider-item'),
-	nextBtn = document.getElementById('sliderNext'),
-	prevBtn = document.getElementById('sliderPrev');
-	showSlides(slideIndex);
-function showSlides(n) {
-
-		if(n > slides.length) {slideIndex = 1;}
-		if(n < 0) {slideIndex = slides.length;}
-
-		function draw(timePassed) {
-		slides[1].style.top = timePassed / 5 + 'px';
-		}
-		function draw(timePassed) {
-		slides[0].style.top = timePassed / 5 + 'px';
-		}
-		// console.log(slides[n].toString().value)
-		for(let i = 0; i < slides.length; i++) {slides[i].style.display = "none";}
-		slides[slideIndex  - 1].style.display = 'flex';
-		
-		let start = Date.now();
-
-		let timer = setInterval(function() {
-		  let timePassed = Date.now() - start;
-
-		  if (timePassed >= 3000) {
-		    clearInterval(timer); 
-		    return;
-		  }
-		  draw(timePassed);
-
-		}, 15);
-		
-
-}
-	function plusSlides (n){
-		showSlides(slideIndex += n)
-	}
-	function plus(){
-	return plusSlides(+1)
-	};
-
-
-
-
-	setInterval(plus,'5000');
-} slider();
 },{}]},{},[1]);

@@ -12,6 +12,7 @@ function modal(){
 	 	prisePopup = document.querySelector(".popup-gift"),
 	 	priseClose = document.getElementsByClassName("popup-close")[1];
 
+function popupFunctions(buttons, popup_design, popup_close){
 	for (var i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener("click", function(){
 	 		popup_design.style.display = "block";
@@ -28,24 +29,13 @@ function modal(){
 			document.body.style.overflow = '';	
 		}
 	})
+}
 
-	for (var i = 0; i < consultation.length; i++) {
-		consultation[i].addEventListener("click", function(){
-	 	consultationOverlay.style.display = "block";
-		document.body.style.overflow = 'hidden';	 		
-	 	})
-	}
-	consultationClose.addEventListener("click", function() {
-		consultationOverlay.style.display = "none";
-		document.body.style.overflow = '';		    
-	})  
+popupFunctions(buttons, popup_design, popup_close);
+popupFunctions(consultation, consultationOverlay, consultationClose);
 
-	window.addEventListener("click", function(e){
-		if(e.target == consultationOverlay) {
-			consultationOverlay.style.display = "none";
-			document.body.style.overflow = '';	
-		}
-	})
+
+
 	prise.addEventListener("click", function() {
 		prise.style.display = "none";
 		prisePopup.style.display = "block";
