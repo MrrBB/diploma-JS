@@ -1,23 +1,19 @@
 function calc(){
   let
       picSize = document.getElementById('size').value,
+
+
       material   = document.getElementById('material').value,
+
       additionalServices   = document.getElementById('options').value,
+
       totalValue = document.getElementsByClassName("calc-price")[0],
-      promocode = document.getElementsByClassName("promocode")[0],
 
       total = 0,
       firstForm = 0,
       secondForm = 0,
-      thirdForm = 0;
-
-promocode.addEventListener('change', function() {
-		if(promocode.value == "IWANTPOPART"){
-			discount = true;
-		} else {
-			discount = false;
-		}
-})
+      thirdForm = 0,
+      discount = false;
 
       //доп услуги
       switch (additionalServices) {
@@ -79,35 +75,18 @@ promocode.addEventListener('change', function() {
              if(materialPrice == 0){
                totalValue.innerHTML = 0;
              }
-						 if(discount == true){
-							 totalValue.innerHTML = totalValue.innerHTML * 0.7
-						 }
          })
 
      document.getElementById('material').addEventListener('change', function(){
 
-          	totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
-            console.log("done")
-
-           if(sizePrice == 0){
-             totalValue.innerHTML = 0;
-           }
-					 if( discount == true){
-						 totalValue.innerHTML = totalValue.innerHTML * 0.7
-					 }
-      })
-     document.getElementById('options').addEventListener('change', function(){
-
-			 if(sizePrice == 0 || materialPrice == 0){
+       if(sizePrice == 0){
          totalValue.innerHTML = 0;
        } else {
          totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
          console.log("done")
        }
-			 if( discount == true){
-				 totalValue.innerHTML = totalValue.innerHTML * 0.7
-			 }
-		 })
+
+      })
 
 
 

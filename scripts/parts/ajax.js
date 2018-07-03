@@ -1,5 +1,5 @@
 function ajax(){
-	
+
 	let message = new Object();
 	message.success = 'Спасибо! Скоро мы с вами свяжемся';
 	message.loading = 'Load...';
@@ -29,16 +29,16 @@ function ajax(){
 		form.addEventListener('submit', function(event) {
 			event.preventDefault();
 			form.appendChild(statusMessage);
-	
+
 			//AJAX
-	
+
 			let request = new XMLHttpRequest();
 			request.open("POST", 'server.php')
-	
+
 			request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	
+
 			let formData = new FormData(form);
-	
+
 			request.send(formData);
 			request.onreadystatechange = function() {
 				if(request.readyState < 4){

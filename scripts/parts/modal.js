@@ -30,10 +30,8 @@ function popupFunctions(buttons, popup_design, popup_close){
 		}
 	})
 }
-
 popupFunctions(buttons, popup_design, popup_close);
 popupFunctions(consultation, consultationOverlay, consultationClose);
-
 
 
 	prise.addEventListener("click", function() {

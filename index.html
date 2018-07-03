@@ -52,7 +52,7 @@
 }
 </script>
 
-	
+
 	<img class="fixed-gift wow pulse infinite" src=img/gift.png alt>
 	<header class=header>
 		<div class=container>
@@ -145,14 +145,14 @@
 							<img src="img/prev-arrow-slider.svg" alt="prev" id="sliderPrev">
 
 							<div id="imageSlider"><img src=img/main-1.png alt=image></div>
- 							
+
  							<img id="sliderNext" src="img/next-arrow-slider.svg" alt="next">
 						</div>
 						<div class=main-slider-item >
 							<img src="img/prev-arrow-slider.svg" alt="prev" id="sliderPrev">
 
 							<div id="imageSlider"><img src=img/main-2.png alt=image></div>
- 							
+
  							<img id="sliderNext" src="img/next-arrow-slider.svg" alt="next">
 						</div>
 					</div>
@@ -290,24 +290,24 @@
 							<div>Файл не выбран</div>
 							<input type=file name=upload>
 						</div>
-						<select id=size>
+						<select id=size onchange="calc()">
 							<option >Выберите размер картины</option>
-							<option >40x50</option>
-							<option >50x70</option>
-							<option >70x70</option>
-							<option >70x100</option>
+							<option value="picSizeMini">40x50</option>
+							<option value="picSizeSmall">50x70</option>
+							<option value="picSizeBig">70x70</option>
+							<option value="picSizeGiant">70x100</option>
 						</select>
-						<select id=material>
+						<select id=material onchange="calc()">
 							<option >Выберите материал картины</option>
-							<option   title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
-							<option   title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
-							<option  title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
+							<option  value="materialChip" title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
+							<option  value="materialMiddle" title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
+							<option  value="materialLuxury"title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
 						</select>
-						<select id=options>
+						<select id=options onchange="calc()">
 							<option >Дополнительные услуги</option>
-							<option >Покрытие арт-гелем</option>
-							<option >Экспресс-изготовление</option>
-							<option >Доставка готовых работ </option>
+							<option value="casingLuxury">Покрытие арт-гелем</option>
+							<option value="fastCasing">Экспресс-изготовление</option>
+							<option value="artDelivery">Доставка готовых работ </option>
 						</select>
 						<input type="text" class="promocode" placeholder="Введите ваш промокод">
 						<div class=calc-price>Для расчета нужно выбрать размер картины и материал картины</div>
@@ -648,7 +648,7 @@
 			<p class=p-heading>Остались вопросы?</p>
 			<h2>Получите консультацию художника!</h2>
 			<div class="col-md-10 col-md-offset-1">
-				<form id=staticForm  class=form action=mailer/smart.php method=POST>
+				<form id=staticForm  class=form action=# method=POST>
 					<div class=input-wrapper>
 						<input type=text name=name placeholder="Ваше имя" required onkeyup="if(!/[а-яА-Я]/g.test(this.value)) {this.value=''; alert('можно вводить только русские буквы!')}">
 						<input id="zipCode" onkeyup="javascript:mask('zipCode', '+7(000)000-00-00', event);" type=text name=phone placeholder="Ваш телефон" value="+7(___)___-____" required>
@@ -717,7 +717,7 @@
 				<button class=popup-close>&times;</button>
 				<h4>Остались вопросы? Закажите обратный звонок</h4>
 				<div class=main-form>
-					<form class=form action=mailer/smart.php method=POST>
+					<form class=form action=# method=POST>
 						<input type=text name=name placeholder="Ваше имя" required onkeyup="if(!/[а-яА-Я]/g.test(this.value)) {this.value=''; alert('можно вводить только русские буквы!')}">
 						<input id=zipCode2 type=text name=phone placeholder="Ваш телефон" required onkeyup="javascript:mask('zipCode2', '+7(000)000-00-00', event);" value="+7(___)___-____">
 						<button class="button button-order" onclick="yaCounter46630539.reachGoal('btn-consultation'); return true;">Получить консультацию</button>
