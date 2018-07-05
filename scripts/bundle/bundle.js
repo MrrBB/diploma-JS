@@ -13,7 +13,7 @@ function modal(){
 	 	priseClose = document.getElementsByClassName("popup-close")[1];
 
 function popupFunctions(buttons, popup_design, popup_close){
-	for (var i = 0; i < buttons.length; i++) {
+	for (let i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener("click", function(){
 	 		popup_design.style.display = "block";
 			document.body.style.overflow = 'hidden';	 		
@@ -100,11 +100,35 @@ window.onscroll = function() {
 		document.body.style.overflow = '';		    
 	});  
 
-		closePopupScroll()
 
 	}
 }
 
-}
- modal();
+window.onload = function() {
+	window.setTimeout(slowAlert, 60000);
+		function slowAlert() {
+			if(document.querySelector('.checkforScroll') === null ){
+		let consultation = document.querySelectorAll('.button-consultation'),
+		 	consultationClose = document.getElementsByClassName("popup-close")[0],
+		 	popup_content= document.getElementsByClassName("popup-content")[0],
+		 	consultationOverlay = document.querySelector(".popup-consultation");
+				 		consultationOverlay.style.display = "block";
+						document.body.style.overflow = 'hidden';	 		
+				consultationClose.addEventListener("click", function() {
+					consultationOverlay.style.display = "none";
+					document.body.style.overflow = '';
+				})
+				window.addEventListener("click", function(e){
+					if(e.target == consultationOverlay) {
+						consultationOverlay.style.display = "none";
+						document.body.style.overflow = '';	
+					}
+				})
+				}
+		}
 
+	
+}
+
+}
+modal()
