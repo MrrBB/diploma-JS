@@ -114,24 +114,24 @@ function calc(){
       }
 
       document.getElementById('size').addEventListener('change', function() {
-          	totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
+          	totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
              if(materialPrice == 0){
              	totalValue.innerHTML = 0;
              }
 			 if( promocode.value == "IWANTPOPART"){
-				 totalValue.innerHTML = totalValue.innerHTML * 0.7
+				 totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
 			 }
          })
 
      document.getElementById('material').addEventListener('change', function(){
 
-          	totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
+          	totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
 
 			if(sizePrice == 0){
             	totalValue.innerHTML = 0;
 			}
 			if( promocode.value == "IWANTPOPART"){
-				totalValue.innerHTML = totalValue.innerHTML * 0.7
+				totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
 			 }
       })
      document.getElementById('options').addEventListener('change', function(){
@@ -140,9 +140,9 @@ function calc(){
         	totalValue.innerHTML = 0;
        } else {
        	if(promocode.value == "IWANTPOPART"){
-			totalValue.innerHTML = totalValue.innerHTML * 0.7
+			totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
 		}else{
-		    totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
+		    totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
 		 }
        }
 
@@ -150,7 +150,7 @@ function calc(){
 
      promocode.addEventListener('keyup', function() {
        if(promocode.value == "IWANTPOPART"){
-         totalValue.innerHTML = (sizePrice + materialPrice + casingPrice) * 0.7;
+         totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7);
          discount = true;
        }
      })
