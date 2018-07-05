@@ -19,6 +19,14 @@ function accordion(){
 		}
 		accordion();
 
+		(function animation() {
+			num += step;
+			accordBlock[i].style.marginTop = `${num - offset}px`;
+			accordBlock[i].style.opacity = `${num / offset}`;
+			if (num < offset) requestAnimationFrame(animation);
+		})();
+
+
 
 }
 module.exports = accordion;

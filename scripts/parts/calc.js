@@ -85,12 +85,13 @@ function calc(){
 
 			 if(sizePrice == 0 || materialPrice == 0){
          totalValue.innerHTML = 0;
-       } else {
-         totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
        }
-			 if( discount == true){
+			 else if( discount == true){
 				 totalValue.innerHTML = totalValue.innerHTML * 0.7
 			 }
+        else {
+         totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
+       }
 		 })
 
      promocode.addEventListener('keyup', function() {
