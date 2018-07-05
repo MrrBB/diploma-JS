@@ -1,9 +1,10 @@
-function sizes(){
+function sizes(){	
 	let sizesBlocks = document.getElementsByClassName("sizes-block"),
-		imgs = 'img/sizes[i]-1';
-
-		for(let i = 1; i = sizesBlocks.length; i++){
-			imgs[i].style.display = "block"
+		imgs = document.querySelectorAll(".sizes-block img");
+		for(let i = 0; i < imgs.length; i++){		
+			imgs[i].style.display = "none";
+			imgs[i]-1.style.display = "block";
 		}
+		
 }
 sizes()

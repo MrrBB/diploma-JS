@@ -140,7 +140,7 @@ function calc(){
         	totalValue.innerHTML = 0;
        } else {
        	if(promocode.value == "IWANTPOPART"){
-			totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
+			totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
 		}else{
 		    totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
 		 }
