@@ -63,3 +63,4 @@ function ajax(){
 	ajaxPost(formMini, inputsMini);
 	ajaxPost(staticForm, staticIputs);
 }
+module.exports = ajax;

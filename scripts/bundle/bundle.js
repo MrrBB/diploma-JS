@@ -1,115 +1,110 @@
-function calc(){
-  let
-      picSize = document.getElementById('size').value,
-      material   = document.getElementById('material').value,
-      additionalServices   = document.getElementById('options').value,
-      totalValue = document.getElementsByClassName("calc-price")[0],
-      promocode = document.getElementsByClassName("promocode")[0],
+function modal(){
+	let buttons = document.querySelectorAll(".button-design"),
+	 	popup_design = document.querySelector('.popup-design'),
+	 	popup_close = document.getElementsByClassName("popup-close")[2],
 
-      total = 0,
-      firstForm = 0,
-      secondForm = 0,
-      thirdForm = 0;
+	 	consultation = document.querySelectorAll('.button-consultation'),
+	 	consultationClose = document.getElementsByClassName("popup-close")[0],
+	 	popup_content= document.getElementsByClassName("popup-content")[0],
+	 	consultationOverlay = document.querySelector(".popup-consultation"),
 
-promocode.addEventListener('change', function() {
-		if(promocode.value == "IWANTPOPART"){
-			discount = true;
-		} else {
-			discount = false;
+	 	prise = document.querySelector(".fixed-gift"),
+	 	prisePopup = document.querySelector(".popup-gift"),
+	 	priseClose = document.getElementsByClassName("popup-close")[1];
+
+function popupFunctions(buttons, popup_design, popup_close){
+	for (var i = 0; i < buttons.length; i++) {
+		buttons[i].addEventListener("click", function(){
+	 		popup_design.style.display = "block";
+			document.body.style.overflow = 'hidden';	 		
+	 	})
+	}
+	popup_close.addEventListener("click", function() {
+		popup_design.style.display = "none";
+		document.body.style.overflow = '';
+	})
+	window.addEventListener("click", function(e){
+		if(e.target == popup_design) {
+			popup_design.style.display = "none";
+			document.body.style.overflow = '';	
 		}
+	})
+}
+popupFunctions(buttons, popup_design, popup_close);
+popupFunctions(consultation, consultationOverlay, consultationClose);
+
+
+	prise.addEventListener("click", function() {
+		prise.style.display = "none";
+		prisePopup.style.display = "block";
+		document.body.style.overflow = 'hidden';	
+	})
+	priseClose.addEventListener("click", function() {
+		prisePopup.style.display = "none";
+		document.body.style.overflow = '';		    
+	})  
+
+	function closePopupScroll(){
+		window.addEventListener("click", function(e){
+			if(e.target == prisePopup) {
+				prisePopup.style.display = "none";
+				document.body.style.overflow = '';	
+			}
+		})	
+	}closePopupScroll()
+
+
+	//подгрузака блоков
+let loadButton = document.getElementsByClassName('button-transparent')[0];
+	loadDivs = document.getElementsByClassName('removeBlocks');
+
+loadButton.addEventListener("click", function(){
+	for (let i = 0; i < loadDivs.length; i++) {			
+		loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+		loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+		loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+		loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+	}
+	loadButton.style.display = "none";
 })
 
-      //доп услуги
-      switch (additionalServices) {
-        case "casingLuxury":
-        casingPrice = 1000;
-        break;
-        case "fastCasing":
-        casingPrice = 1500;
-        break;
-        case "artDelivery":
-        casingPrice = 3000;
-        break;
-        default:
-        casingPrice = 0;
-      }
-      //материал
-      switch (material) {
-        case "materialChip":
-        materialPrice = 500;
-				console.log("it's 500");
-        break;
-        case "materialMiddle":
-        materialPrice = 1000;
-				console.log("it's 1000");
-        break;
-        case "materialLuxury":
-        materialPrice = 1500;
-				console.log("it's 1500");
-        break;
-        default:
-        materialPrice = 0;
-      }
-
-      //размер
-      switch (picSize) {
-        case "picSizeMini":
-          sizePrice = 500;
-					console.log("it's 500");
-          break;
-        case "picSizeSmall":
-          sizePrice = 1000;
-					console.log("it's 1000");
-          break;
-        case "picSizeBig":
-          sizePrice = 1500;
-					console.log("it's 1500");
-          break;
-        case "picSizeGiant":
-          sizePrice = 2000;
-					console.log("it's 2000");
-          break;
-        default:
-        sizePrice = 0;
-      }
-
-      document.getElementById('size').addEventListener('change', function() {
-          	totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
-            console.log("it's done")
-             if(materialPrice == 0){
-               totalValue.innerHTML = 0;
-             }
-						 if(discount == true){
-							 totalValue.innerHTML = totalValue.innerHTML * 0.7
-						 }
-         })
-
-     document.getElementById('material').addEventListener('change', function(){
-
-          	totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
-            console.log("done")
-
-           if(sizePrice == 0){
-             totalValue.innerHTML = 0;
-           }
-					 if( discount == true){
-						 totalValue.innerHTML = totalValue.innerHTML * 0.7
-					 }
-      })
-     document.getElementById('options').addEventListener('change', function(){
-
-			 if(sizePrice == 0 || materialPrice == 0){
-         totalValue.innerHTML = 0;
-       } else {
-         totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
-         console.log("done")
-       }
-			 if( discount == true){
-				 totalValue.innerHTML = totalValue.innerHTML * 0.7
-			 }
-		 })
 
 
 
+//bottom modal 
+let buttonsScroll = document.getElementsByTagName('button');
+for (let i = 0 ; i < buttonsScroll.length; i++){
+	buttonsScroll[i].addEventListener('click', function() {
+	var my_div = newDiv = null;
 
-} calc()
+	  function addElement() {
+	    let newDiv = document.createElement("div");
+	        newDiv.classList.add('checkforScroll');
+		    my_div = document.getElementById("footer");
+		    document.body.insertBefore(newDiv, my_div);
+			}addElement()
+	})
+}
+window.onscroll = function() {   
+	if (document.body.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight && document.querySelector('.checkforScroll') === null  )	{
+	let prise = document.querySelector(".fixed-gift"),
+	 	prisePopup = document.querySelector(".popup-gift"),
+	 	priseClose = document.getElementsByClassName("popup-close")[1];
+
+		prise.style.display = "none";
+		prisePopup.style.display = "block";
+		document.body.style.overflow = 'hidden';	
+
+	priseClose.addEventListener("click", function() {
+		prisePopup.style.display = "none";
+		document.body.style.overflow = '';		    
+	});  
+
+		closePopupScroll()
+
+	}
+}
+
+}
+ modal();
+

@@ -43,13 +43,15 @@ popupFunctions(consultation, consultationOverlay, consultationClose);
 		prisePopup.style.display = "none";
 		document.body.style.overflow = '';		    
 	})  
-	window.addEventListener("click", function(e){
-		if(e.target == prisePopup) {
-			prisePopup.style.display = "none";
-			document.body.style.overflow = '';	
-		}
-	})	
 
+	function closePopupScroll(){
+		window.addEventListener("click", function(e){
+			if(e.target == prisePopup) {
+				prisePopup.style.display = "none";
+				document.body.style.overflow = '';	
+			}
+		})	
+	}closePopupScroll()
 
 
 	//подгрузака блоков
@@ -65,6 +67,42 @@ loadButton.addEventListener("click", function(){
 	}
 	loadButton.style.display = "none";
 })
+
+
+
+
+//bottom modal 
+let buttons = document.getElementsByTagName('button');
+for (let i = 0 ; i < buttons.length; i++){
+	buttons[i].addEventListener('click', function() {
+	var my_div = newDiv = null;
+
+	  function addElement() {
+	    let newDiv = document.createElement("div");
+	        newDiv.classList.add('checkforScroll');
+		    my_div = document.getElementById("footer");
+		    document.body.insertBefore(newDiv, my_div);
+			}addElement()
+	})
+}
+window.onscroll = function() {   
+	if (document.body.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight && document.querySelector('.checkforScroll') === null  )	{
+	let prise = document.querySelector(".fixed-gift"),
+	 	prisePopup = document.querySelector(".popup-gift"),
+	 	priseClose = document.getElementsByClassName("popup-close")[1];
+
+		prise.style.display = "none";
+		prisePopup.style.display = "block";
+		document.body.style.overflow = 'hidden';	
+
+	priseClose.addEventListener("click", function() {
+		prisePopup.style.display = "none";
+		document.body.style.overflow = '';		    
+	});  
+
+
+	}
+}
 
 }
 module.exports = modal;
