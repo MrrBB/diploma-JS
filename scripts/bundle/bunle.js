@@ -1,36 +1,27 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 window.addEventListener('DOMContentLoaded', function() {
-	// let slider = require('../parts/slider.js');
+	let slider = require('../parts/slider.js');
 	let modal = require('../parts/modal.js');
 	let ajax = require('../parts/ajax.js');
+	let calc = require('../parts/calc.js');
 	let accordion = require('../parts/accordion.js');
 	let burger = require('../parts/burger.js');
-	// let sizes = require('../parts/sizes.js');
+	let sizes = require('../parts/sizes.js');
 	let filter = require('../parts/filter.js');
-	let calc = require('../parts/calc.js');
 
 
-	// slider();
+	slider();
 	modal();
 	ajax();
+	calc();
 	accordion();
 	filter();
-	// sizes();
+	sizes();
 	filter();
-	calc();
 
 })
 
-
-
-
-
-
-
-
-
-
-},{"../parts/accordion.js":2,"../parts/ajax.js":3,"../parts/burger.js":4,"../parts/calc.js":5,"../parts/filter.js":6,"../parts/modal.js":7}],2:[function(require,module,exports){
+},{"../parts/accordion.js":2,"../parts/ajax.js":3,"../parts/burger.js":4,"../parts/calc.js":5,"../parts/filter.js":6,"../parts/modal.js":7,"../parts/sizes.js":8,"../parts/slider.js":9}],2:[function(require,module,exports){
 function accordion(){
   let acc = document.getElementsByClassName('accordion-heading');
 
@@ -434,4 +425,65 @@ window.onload = function() {
 
 }
 module.exports = modal;
+},{}],8:[function(require,module,exports){
+function sizes(){
+	let sizesBlocks = document.getElementsByClassName("sizes-block"),
+		imgs = 'img/sizes[i]-1';
+
+		for(let i = 1; i = sizesBlocks.length; i++){
+			imgs[i].style.display = "block"
+		}
+}
+sizes()
+
+},{}],9:[function(require,module,exports){
+function slider() {
+
+	let slideIndex = 1,
+	slides = document.getElementsByClassName('main-slider-item'),
+	nextBtn = document.getElementById('sliderNext'),
+	prevBtn = document.getElementById('sliderPrev');
+	showSlides(slideIndex);
+function showSlides(n) {
+
+		if(n > slides.length) {slideIndex = 1;}
+		if(n < 0) {slideIndex = slides.length;}
+
+		function draw(timePassed) {
+		slides[1].style.top = timePassed / 5 + 'px';
+		}
+		function draw(timePassed) {
+		slides[0].style.top = timePassed / 5 + 'px';
+		}
+		// console.log(slides[n].toString().value)
+		for(let i = 0; i < slides.length; i++) {slides[i].style.display = "none";}
+		slides[slideIndex  - 1].style.display = 'flex';
+		
+		let start = Date.now();
+
+		let timer = setInterval(function() {
+		  let timePassed = Date.now() - start;
+
+		  if (timePassed >= 3000) {
+		    clearInterval(timer); 
+		    return;
+		  }
+		  draw(timePassed);
+
+		}, 15);
+		
+
+}
+	function plusSlides (n){
+		showSlides(slideIndex += n)
+	}
+	function plus(){
+	return plusSlides(+1)
+	};
+
+
+
+
+	setInterval(plus,'5000');
+} slider();
 },{}]},{},[1]);

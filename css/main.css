@@ -90,6 +90,7 @@ h4 {
   text-decoration: underline;
 }
 .panel-active + .accordion-block {
+    background-color: #f7e7e6;
   display: block;
 }
 
@@ -97,6 +98,7 @@ h4 {
 
 
 .row:nth-child(2){
+  scroll-behavior:smooth;
   display: flex;
   border: red solid 5px;
   justify-content: space-around;

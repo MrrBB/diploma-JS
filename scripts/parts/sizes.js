@@ -5,4 +5,5 @@ function sizes(){
 		for(let i = 1; i = sizesBlocks.length; i++){
 			imgs[i].style.display = "block"
 		}
-}sizes()
+}
+sizes()
