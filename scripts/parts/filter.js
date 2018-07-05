@@ -5,9 +5,11 @@ function filter(){
 	portfolio_block = document.getElementsByClassName('portfolio-block');
 	for (let i = 0; i < portfolio_selectors.length; i++ ){
 		portfolio_selectors[i].addEventListener('click', function() {
-			// for(let h = 0; h < portfolio_selectors[i]; h++){
-			// 	portfolio_selectors[i].classList.toggle('active')
-			// }
+			for (let i = 0; i < portfolio_selectors.length; i++) {
+			    let current = document.getElementsByClassName("active");
+			    current[0].className = current[0].className.replace(" active", "");
+			    this.className += " active";
+			}
 			let portfolio_wrapper = document.getElementsByClassName('portfolio-wrapper')[0],
 				portfolio_block = document.getElementsByClassName('portfolio-block'),
 				girls = portfolio_wrapper.getElementsByClassName('girl'),
@@ -31,6 +33,7 @@ function filter(){
 						for(let d = 0; d < exception3.length; d++){				
 						exception3[d].style.display = 'none'
 						}
+						document.getElementsByClassName('portfolio-no')[0].style.display = "none";
 					}
 				}
 				bulkhead(1, girls, guys, chefs);

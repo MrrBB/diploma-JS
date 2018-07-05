@@ -1,22 +1,21 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 window.addEventListener('DOMContentLoaded', function() {
-	// let slider = require('../parts/slider.js');
+	let slider = require('../parts/slider.js');
 	let modal = require('../parts/modal.js');
 	let ajax = require('../parts/ajax.js');
 	let accordion = require('../parts/accordion.js');
 	let burger = require('../parts/burger.js');
-	// let sizes = require('../parts/sizes.js');
+
 	let filter = require('../parts/filter.js');
 	let calc = require('../parts/calc.js');
 	let sezes = require('../parts/sizes.js');
 
 
-	// slider();
+	slider();
 	modal();
 	ajax();
 	accordion();
 	filter();
-	// sizes();
 	filter();
 	calc();
 	sezes();
@@ -32,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 
-},{"../parts/accordion.js":2,"../parts/ajax.js":3,"../parts/burger.js":4,"../parts/calc.js":5,"../parts/filter.js":6,"../parts/modal.js":7,"../parts/sizes.js":8}],2:[function(require,module,exports){
+},{"../parts/accordion.js":2,"../parts/ajax.js":3,"../parts/burger.js":4,"../parts/calc.js":5,"../parts/filter.js":6,"../parts/modal.js":7,"../parts/sizes.js":8,"../parts/slider.js":9}],2:[function(require,module,exports){
 function accordion(){
   let acc = document.getElementsByClassName('accordion-heading');
 
@@ -259,9 +258,11 @@ function filter(){
 	portfolio_block = document.getElementsByClassName('portfolio-block');
 	for (let i = 0; i < portfolio_selectors.length; i++ ){
 		portfolio_selectors[i].addEventListener('click', function() {
-			// for(let h = 0; h < portfolio_selectors[i]; h++){
-			// 	portfolio_selectors[i].classList.toggle('active')
-			// }
+			for (let i = 0; i < portfolio_selectors.length; i++) {
+			    let current = document.getElementsByClassName("active");
+			    current[0].className = current[0].className.replace(" active", "");
+			    this.className += " active";
+			}
 			let portfolio_wrapper = document.getElementsByClassName('portfolio-wrapper')[0],
 				portfolio_block = document.getElementsByClassName('portfolio-block'),
 				girls = portfolio_wrapper.getElementsByClassName('girl'),
@@ -285,6 +286,7 @@ function filter(){
 						for(let d = 0; d < exception3.length; d++){				
 						exception3[d].style.display = 'none'
 						}
+						document.getElementsByClassName('portfolio-no')[0].style.display = "none";
 					}
 				}
 				bulkhead(1, girls, guys, chefs);
@@ -460,4 +462,57 @@ function sizes(){
 }
 module.exports = sizes;
 
+},{}],9:[function(require,module,exports){
+function slider() {
+
+	let slideIndex = 1,
+	slides = document.getElementsByClassName('main-slider-item'),
+	nextBtn = document.getElementById('sliderNext'),
+	prevBtn = document.getElementById('sliderPrev'),
+
+	bottomSlider = document.getElementsByClassName("feedback-slider-item"),
+	btnNext = document.querySelector('.main-next-btn'),
+	btnPrev = document.querySelector(".main-prev-btn");
+	showSlides(slideIndex);
+	bottomSliderList(slideIndex);
+function showSlides(n) {
+		if(n > slides.length) {slideIndex = 1;}
+		if(n < 0) {slideIndex = slides.length;}
+		for(let i = 0; i < slides.length; i++) {slides[i].style.display = "none";}
+		slides[slideIndex  - 1].style.display = 'flex';		
+		let start = Date.now();	
+}
+	  
+function bottomSliderList(n){
+		if(n > bottomSlider.length) {slideIndex = 1;}
+		if(n < 0) {slideIndex = bottomSlider.length;}
+		for(let i = 0; i < bottomSlider.length; i++) {bottomSlider[i].style.display = "none";}
+		bottomSlider[slideIndex  - 1].style.display = 'flex';
+		let start = Date.now();	
+}
+
+	setInterval(plus,'5000');
+	function plusSlides (n){
+		showSlides(slideIndex += n)
+	}
+
+	function plus(){
+	return plusSlides(+1)
+	};
+
+	function plusSlidesBottom (n){
+		bottomSliderList(slideIndex += n)
+	}
+	function plusBottom(){
+		return plusSlidesBottom(+1);
+
+	};
+	btnNext.addEventListener('click', plusBottom);
+	btnPrev.addEventListener('click', function() {
+		plusSlidesBottom(-1)
+	})
+	setInterval(plusBottom,'5000');
+
+} 
+module.exports = slider;
 },{}]},{},[1]);
