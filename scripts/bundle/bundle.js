@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	// let sizes = require('../parts/sizes.js');
 	let filter = require('../parts/filter.js');
 	let calc = require('../parts/calc.js');
+	let sezes = require('../parts/sizes.js');
 
 
 	// slider();
@@ -18,6 +19,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	// sizes();
 	filter();
 	calc();
+	sezes();
 
 })
 
@@ -30,7 +32,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 
-},{"../parts/accordion.js":2,"../parts/ajax.js":3,"../parts/burger.js":4,"../parts/calc.js":5,"../parts/filter.js":6,"../parts/modal.js":7}],2:[function(require,module,exports){
+},{"../parts/accordion.js":2,"../parts/ajax.js":3,"../parts/burger.js":4,"../parts/calc.js":5,"../parts/filter.js":6,"../parts/modal.js":7,"../parts/sizes.js":8}],2:[function(require,module,exports){
 function accordion(){
   let acc = document.getElementsByClassName('accordion-heading');
 
@@ -51,15 +53,6 @@ function accordion(){
 		});
 		}
 		accordion();
-
-		(function animation() {
-			num += step;
-			accordBlock[i].style.marginTop = `${num - offset}px`;
-			accordBlock[i].style.opacity = `${num / offset}`;
-			if (num < offset) requestAnimationFrame(animation);
-		})();
-
-
 
 }
 module.exports = accordion;
@@ -443,4 +436,28 @@ window.onload = function() {
 
 }
 module.exports = modal;
+},{}],8:[function(require,module,exports){
+function sizes(){	
+	let sizesBlocks = document.getElementsByClassName("sizes-block"),
+		imgs = document.querySelectorAll(".sizes-block img");
+
+			for(let i = 0; i < sizesBlocks.length; i++){
+				let divsSizes = sizesBlocks[i].getElementsByTagName('p')
+
+			sizesBlocks[i].addEventListener("mouseover", function(){
+				for(let i = 0; i <divsSizes.length; i++){
+					divsSizes[i].style.display = "none"
+				}
+			})
+			sizesBlocks[i].addEventListener("mouseout", function(){
+				for(let i = 0; i <divsSizes.length; i++){
+					divsSizes[i].style.display = "block"
+				}
+			})
+
+		
+			}
+}
+module.exports = sizes;
+
 },{}]},{},[1]);

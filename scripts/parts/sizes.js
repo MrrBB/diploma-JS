@@ -1,10 +1,22 @@
 function sizes(){	
 	let sizesBlocks = document.getElementsByClassName("sizes-block"),
 		imgs = document.querySelectorAll(".sizes-block img");
-		for(let i = 0; i < imgs.length; i++){		
-			imgs[i].style.display = "none";
-			imgs[i]-1.style.display = "block";
-		}
+
+			for(let i = 0; i < sizesBlocks.length; i++){
+				let divsSizes = sizesBlocks[i].getElementsByTagName('p')
+
+			sizesBlocks[i].addEventListener("mouseover", function(){
+				for(let i = 0; i <divsSizes.length; i++){
+					divsSizes[i].style.display = "none"
+				}
+			})
+			sizesBlocks[i].addEventListener("mouseout", function(){
+				for(let i = 0; i <divsSizes.length; i++){
+					divsSizes[i].style.display = "block"
+				}
+			})
+
 		
+			}
 }
-sizes()
+module.exports = sizes;

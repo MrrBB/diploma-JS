@@ -59,7 +59,15 @@ h3,
 h4 {
   font-family: 'Circe Extra Bold', sans-serif;
 }
+.sizes-block:nth-child(1)  img{
+  background: url("../img/sizes-1.png"); /* Путь к файлу с исходным рисунком  */
+  display: block; /*  Рисунок как блочный элемент */
+}
 
+
+.sizes-block:nth-child(1)  img:hover{
+  background: url("../img/sizescorrect1.png")
+}
 
 .accordion-heading {
   padding: 10px 15px;

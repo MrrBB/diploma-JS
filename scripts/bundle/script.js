@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	// let sizes = require('../parts/sizes.js');
 	let filter = require('../parts/filter.js');
 	let calc = require('../parts/calc.js');
+	let sezes = require('../parts/sizes.js');
 
 
 	// slider();
@@ -17,6 +18,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	// sizes();
 	filter();
 	calc();
+	sezes();
 
 })
 
