@@ -3,6 +3,7 @@
 <head>
 	<meta charset=UTF-8>
 	<meta name=viewport content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/animate.css">
 	<title>Картины.art - портрет на холсте</title>
 </head>
 <body>
@@ -244,23 +245,26 @@ function calc(){
 					<p class=phone-whatsapp><img class=icons src=img/telephone.svg alt><img class=icons src=img/whatsapp.svg alt> +7 495 234-23-34</p>
 				</div>
 			</div>
-			<div class=row>
-				<div class=col-md-7>
-					<div class=main-slider>
-						<div class=main-slider-item >
-							<!-- <img src="img/prev-arrow-slider.svg" alt="prev" id="sliderPrev"> -->
+			<div class=row >
+				<div class=col-md-7 id="slider">
+					<div class=main-slider id="slideWrap">
 
-							<div id="imageSlider"><img src=img/main-1.png alt=image></div>
+								<div class=main-slider-item class=animateTest>
+									<!-- <img src="img/prev-arrow-slider.svg" alt="prev" id="sliderPrev"> -->
 
- 							<!-- <img id="sliderNext" src="img/next-arrow-slider.svg" alt="next"> -->
-						</div>
-						<div class=main-slider-item >
-							<!-- <img src="img/prev-arrow-slider.svg" alt="prev" id="sliderPrev"> -->
+									<img src=img/main-1.png alt=image>
 
-							<div id="imageSlider"><img src=img/main-2.png alt=image></div>
+		 							<!-- <img id="sliderNext" src="img/next-arrow-slider.svg" alt="next"> -->
+								</div>
 
- 						<!-- 	<img id="sliderNext" src="img/next-arrow-slider.svg" alt="next"> -->
-						</div>
+								<div class=main-slider-item >
+									<!-- <img src="img/prev-arrow-slider.svg" alt="prev" id="sliderPrev"> -->
+
+									<img src=img/main-2.png alt=image>
+
+		 						<!-- 	<img id="sliderNext" src="img/next-arrow-slider.svg" alt="next"> -->
+								</div>
+
 					</div>
 				</div>
 				<div class=col-md-5>
@@ -667,48 +671,56 @@ function calc(){
 				<button class="main-slider-btn main-prev-btn">
 					<img src="img/left-arr.png">
 				</button>'
-				<button class="main-slider-btn main-next-btn">
+				<button class="main-slider-btn main-next-btn" id="nextBtn">
 					<img src="img/right-arr.png">
 				</button>
-				<div class=feedback-slider-item>
-					<div class=col-sm-5>
-						<div class=feedback-block>
-							<img src=img/feedback-1.png alt>
-							<button class="button button-order button-design">Хочу так же</button>
+				<slider>
+					<slide>					
+						<div class=feedback-slider-item>
+							<div class=col-sm-5>
+								<div class=feedback-block>
+									<img src=img/feedback-1.png alt>
+									<button class="button button-order button-design">Хочу так же</button>
+								</div>
+							</div>
+							<div class="col-sm-5 col-sm-offset-1">
+								<p class=feedback-heading>«...Получил я именно то, о чем мечтал, причем прямо с доставкой на дом!...»</p>
+								<p class=feedback-text>Я живу в небольшом поселке и для меня заказать портрет было целым подвигом! Пристал наши с супругой фото и попросил сделать несколько макетов на выбор. К моему удивлению, очень скоро мне прислали не просто несколько, а целых 15 разных макетов! Я выбрал самый лучший и оформил заказ.</p>
+								<p class=feedback-signature><span>Олег Петров,</span> д. Месягутово</p>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-5 col-sm-offset-1">
-						<p class=feedback-heading>«...Получил я именно то, о чем мечтал, причем прямо с доставкой на дом!...»</p>
-						<p class=feedback-text>Я живу в небольшом поселке и для меня заказать портрет было целым подвигом! Пристал наши с супругой фото и попросил сделать несколько макетов на выбор. К моему удивлению, очень скоро мне прислали не просто несколько, а целых 15 разных макетов! Я выбрал самый лучший и оформил заказ.</p>
-						<p class=feedback-signature><span>Олег Петров,</span> д. Месягутово</p>
-					</div>
-				</div>
-				<div class=feedback-slider-item>
-					<div class=col-sm-5>
-						<div class=feedback-block>
-							<img src=img/feedback-2.jpg alt>
-							<button class="button button-order button-design">Хочу так же</button>
+					</slide>
+					<slide>
+						<div class=feedback-slider-item>
+							<div class=col-sm-5>
+								<div class=feedback-block>
+									<img src=img/feedback-2.jpg alt>
+									<button class="button button-order button-design">Хочу так же</button>
+								</div>
+							</div>
+							<div class="col-sm-5 col-sm-offset-1">
+								<p class=feedback-heading>«...Я в восторге! Не думала, что портрет может быть настолько красивым!...»</p>
+								<p class=feedback-text>Подруге муж подарил портрет, и мне тоже захотелось заказать. Из всех макетов этот сразу запал в душу! И отлично вписывется в интерьер моей гостинной. Теперь он висит тут на почетном месте, и я каждый раз любую им. Всем моим родным тоже очень понравился!</p>
+								<p class=feedback-signature><span>Ирина Антонова,</span> г. Кисловодск</p>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-5 col-sm-offset-1">
-						<p class=feedback-heading>«...Я в восторге! Не думала, что портрет может быть настолько красивым!...»</p>
-						<p class=feedback-text>Подруге муж подарил портрет, и мне тоже захотелось заказать. Из всех макетов этот сразу запал в душу! И отлично вписывется в интерьер моей гостинной. Теперь он висит тут на почетном месте, и я каждый раз любую им. Всем моим родным тоже очень понравился!</p>
-						<p class=feedback-signature><span>Ирина Антонова,</span> г. Кисловодск</p>
-					</div>
-				</div>
-				<div class=feedback-slider-item>
-					<div class=col-sm-5>
-						<div class=feedback-block>
-							<img src=img/feedback-3.jpg alt>
-							<button class="button button-order button-design">Хочу так же</button>
+					</slide>	
+					<slide>
+						<div class=feedback-slider-item>
+							<div class=col-sm-5>
+								<div class=feedback-block>
+									<img src=img/feedback-3.jpg alt>
+									<button class="button button-order button-design">Хочу так же</button>
+								</div>
+							</div>
+							<div class="col-sm-5 col-sm-offset-1">
+								<p class=feedback-heading>«...Неожиданный подарок на день рождения от друзей...»</p>
+								<p class=feedback-text>Хочу поделиться впечатлениями от полученного вчера подарка. Классная работа, выполненная, натуральными красками! Я как человек педантичный, люблю мелочи, для меня они очень важны, и здесь они прикольно сделаны – часы нарисовали, свитерок мой любимый, маечка с резиночкой. Очень позитивный шарж, сделанный по моей фотографии.</p>
+								<p class=feedback-signature><span>Нарек Маргарян,</span> г. Великие Луки</p>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-5 col-sm-offset-1">
-						<p class=feedback-heading>«...Неожиданный подарок на день рождения от друзей...»</p>
-						<p class=feedback-text>Хочу поделиться впечатлениями от полученного вчера подарка. Классная работа, выполненная, натуральными красками! Я как человек педантичный, люблю мелочи, для меня они очень важны, и здесь они прикольно сделаны – часы нарисовали, свитерок мой любимый, маечка с резиночкой. Очень позитивный шарж, сделанный по моей фотографии.</p>
-						<p class=feedback-signature><span>Нарек Маргарян,</span> г. Великие Луки</p>
-					</div>
-				</div>
+					</slide>
+				</slider>
 			</div>
 		</div>
 	</div>
