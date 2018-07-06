@@ -1,13 +1,37 @@
 function slider() {
 
-
-	let slides = document.getElementsByClassName('feedback-slider-item');
+	let autoSlider = document.getElementsByClassName('main-slider-item');
+	let slideShow = 1;
 	let slideNum = 1;
-	showSlides(slideNum);
-	prevSlides(slideNum);
+	let slides = document.getElementsByClassName('feedback-slider-item');
+	nextSlides(slideShow);
+	nextAutoSlideFunction(slideNum);
 
 
-	function showSlides(n) {
+	function nextAutoSlideFunction(n) {
+		if(n > autoSlider.length) {slideShow = 1;}
+    	if(n < 0) {slideShow = autoSlider.length;}
+		for(let i = 0; i < autoSlider.length; i++){
+			autoSlider[i].style.display = "none";
+			autoSlider[i].classList.remove("animated", "bounceInDown");
+		}
+		autoSlider[slideShow  - 1].style.display = 'flex';
+		autoSlider[slideShow - 1].classList.add("animated", "bounceInDown");
+	}
+
+	function plusAutoSlides (n){
+		nextAutoSlideFunction(slideShow += n)
+  	}
+
+	function nextAutoSlidesFunction(){
+		return plusAutoSlides(+1)
+	};
+
+	setInterval(nextAutoSlidesFunction,'5000');
+
+
+
+	function nextSlides(n) {
 		if(n > slides.length) {slideNum = 1;}
     	if(n < 0) {slideNum = slides.length;}
 		for(let i = 0; i < slides.length; i++){
@@ -17,8 +41,9 @@ function slider() {
 		slides[slideNum  - 1].style.display = 'flex';
 		slides[slideNum - 1].classList.add("animated", "bounceInRight");
 	}
+
 	function plusSlides (n){
-		showSlides(slideNum += n)
+		nextSlides(slideNum += n)
   	}
 
 	function next(){
@@ -46,10 +71,5 @@ function slider() {
 	document.getElementsByClassName("main-prev-btn")[0].addEventListener('click', prev);
 	setInterval(next,'7000');
 
-
-
-
-
-
 } 
-slider();
+module.exports = slider;

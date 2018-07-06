@@ -16,4 +16,4 @@ function burgerMenu(){
    	burgerMenuButton.addEventListener('click', function(){})
 
 } 
-module.exports = burgerMenu()
+module.exports = burgerMenu;
