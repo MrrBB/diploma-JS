@@ -9,7 +9,7 @@ function calc(){
       total = 0,
       firstForm = 0,
       secondForm = 0,
-			discount = false,
+      discount = false,
       thirdForm = 0;
 
 
@@ -61,44 +61,45 @@ function calc(){
       }
 
       document.getElementById('size').addEventListener('change', function() {
-          	totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
+            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
              if(materialPrice == 0){
-               totalValue.innerHTML = 0;
+              totalValue.innerHTML = 0;
              }
-						 if(discount == true){
-							 totalValue.innerHTML = totalValue.innerHTML * 0.7
-						 }
+       if( promocode.value == "IWANTPOPART"){
+         totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
+       }
          })
 
      document.getElementById('material').addEventListener('change', function(){
 
-          	totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
+            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
 
-           if(sizePrice == 0){
-             totalValue.innerHTML = 0;
-           }
-					 if( discount == true){
-						 totalValue.innerHTML = totalValue.innerHTML * 0.7
-					 }
+      if(sizePrice == 0){
+              totalValue.innerHTML = 0;
+      }
+      if( promocode.value == "IWANTPOPART"){
+        totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
+       }
       })
      document.getElementById('options').addEventListener('change', function(){
 
-			 if(sizePrice == 0 || materialPrice == 0){
-         totalValue.innerHTML = 0;
+    if(sizePrice == 0 || materialPrice == 0){
+          totalValue.innerHTML = 0;
+       } else {
+        if(promocode.value == "IWANTPOPART"){
+      totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+    }else{
+        totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
+     }
        }
-			 else if( discount == true){
-				 totalValue.innerHTML = totalValue.innerHTML * 0.7
-			 }
-        else {
-         totalValue.innerHTML = sizePrice + materialPrice + casingPrice;
-       }
-		 })
 
-     promocode.addEventListener('keyup', function() {
+     })
+
+     promocode.addEventListener('change', function() {
        if(promocode.value == "IWANTPOPART"){
-         totalValue.innerHTML = (sizePrice + materialPrice + casingPrice) * 0.7;
+         totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7);
          discount = true;
-       }
+       } else {totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);}
      })
 }
 module.exports = calc;
