@@ -134,13 +134,11 @@ function burgerMenu(){
       burgerMenuButton.onmouseout = menuHide;
 
       function menuShow(){
-      	burgerMenu.style.display = "block";
+         burgerMenu.style.display = "block";
       }
       function menuHide(){
-      	burgerMenu.style.display = "none";
+         burgerMenu.style.display = "none";
       }
-
-   	burgerMenuButton.addEventListener('click', function(){})
 
 } 
 module.exports = burgerMenu;
