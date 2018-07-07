@@ -99,10 +99,16 @@ if(sizePrice == 0 || materialPrice == 0){
      })
 
      promocode.addEventListener('change', function() {
-       if(promocode.value == "IWANTPOPART"){
-         totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7);
-         discount = true;
-       } else {totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);}
+    if(sizePrice == 0 || materialPrice == 0){
+          totalValue.innerHTML = 0;
+       } else {
+          if(promocode.value == "IWANTPOPART"){
+            totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+          }else{
+            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
+           }
+       }
+
      })
 }
 module.exports = calc;
