@@ -47,6 +47,12 @@ function filter() {
 				}
 				document.getElementsByClassName('portfolio-no')[0].style.display = "block";
 			}
+			if(i ==	0){
+				for(let d = 0; d <  portfolio_block.length; d++){
+					portfolio_block[d].style.display = 'block';
+				}	
+				document.getElementsByClassName('portfolio-no')[0].style.display = "none";
+			}
 		});
 	};
 

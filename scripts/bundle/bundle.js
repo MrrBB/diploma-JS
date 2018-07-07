@@ -10,18 +10,24 @@ window.addEventListener('DOMContentLoaded', function() {
 	let sezes = require('../parts/sizes.js');
 	let slider = require('../parts/slider.js');
 
- calc();
+
+	calc();
 	slider();
 	modal();
 	ajax();
 	accordion();
 	filter();
-	filter();
 	sezes();
 	mask();
 
-console.log(calc)
 })
+
+
+
+
+
+
+
 
 
 
@@ -261,6 +267,7 @@ function calc(){
       secondForm = 0,
       discount = false,
       thirdForm = 0;
+ 
 
 
       //доп услуги
@@ -310,37 +317,40 @@ function calc(){
         sizePrice = 0;
       }
 
-      document.getElementById('size').addEventListener('change', function() {
+      document.getElementById('size').addEventListener('change', function() {    
+if(sizePrice == 0 || materialPrice == 0){
+          totalValue.innerHTML = 0;
+       } else {
+          if(promocode.value == "IWANTPOPART"){
+            totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+          }else{
             totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
-             if(materialPrice == 0){
-              totalValue.innerHTML = 0;
-             }
-           if( promocode.value == "IWANTPOPART"){
-             totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
            }
-         })
-
-     document.getElementById('material').addEventListener('change', function(){
-
-            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
-
-      if(sizePrice == 0){
-              totalValue.innerHTML = 0;
-      }
-      if( promocode.value == "IWANTPOPART"){
-        totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
        }
-      })
-     document.getElementById('options').addEventListener('change', function(){
 
+     })
+
+     document.getElementById('material').addEventListener('change', function(){       
+if(sizePrice == 0 || materialPrice == 0){
+          totalValue.innerHTML = 0;
+       } else {
+          if(promocode.value == "IWANTPOPART"){
+            totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+          }else{
+            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
+           }
+       }
+
+     })
+     document.getElementById('options').addEventListener('change', function(){
     if(sizePrice == 0 || materialPrice == 0){
           totalValue.innerHTML = 0;
        } else {
-        if(promocode.value == "IWANTPOPART"){
-      totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
-    }else{
-        totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
-     }
+          if(promocode.value == "IWANTPOPART"){
+            totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+          }else{
+            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
+           }
        }
 
      })
@@ -403,6 +413,12 @@ function filter() {
 					portfolio_block[_d4].style.display = 'none';
 				}
 				document.getElementsByClassName('portfolio-no')[0].style.display = "block";
+			}
+			if(i ==	0){
+				for(let d = 0; d <  portfolio_block.length; d++){
+					portfolio_block[d].style.display = 'block';
+				}	
+				document.getElementsByClassName('portfolio-no')[0].style.display = "none";
 			}
 		});
 	};
@@ -469,9 +485,11 @@ function modal(){
 
 	 	prise = document.querySelector(".fixed-gift"),
 	 	prisePopup = document.querySelector(".popup-gift"),
-	 	priseClose = document.getElementsByClassName("popup-close")[1];
+	 	priseClose = document.getElementsByClassName("popup-close")[1],
+	 	formFirst = document.getElementById("formFirst"),
+	 	formSecond = document.getElementById("formForSend");
 
-function popupFunctions(buttons, popup_design, popup_close){
+function popupFunctions(buttons, popup_design, popup_close, formS){
 	for (let i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener("click", function(){
 	 		popup_design.style.display = "block";
@@ -480,17 +498,30 @@ function popupFunctions(buttons, popup_design, popup_close){
 	}
 	popup_close.addEventListener("click", function() {
 		popup_design.style.display = "none";
-		document.body.style.overflow = '';
+		document.body.style.overflow = '';		
+			let input = formS.getElementsByTagName('input');
+			for(let i = 0; i < input.length; i++){
+					input[i].value = '';
+					// очищаем поля ввода
+			}
+		
 	})
 	window.addEventListener("click", function(e){
 		if(e.target == popup_design) {
 			popup_design.style.display = "none";
 			document.body.style.overflow = '';	
-		}
+		}	
+
+		let input = formS.getElementsByTagName('input');
+		for(let i = 0; i < input.length; i++){
+				input[i].value = '';
+				// очищаем поля ввода
+			}
+		
 	})
 }
-popupFunctions(buttons, popup_design, popup_close);
-popupFunctions(consultation, consultationOverlay, consultationClose);
+popupFunctions(buttons, popup_design, popup_close, formFirst);
+popupFunctions(consultation, consultationOverlay, consultationClose, formSecond);
 
 
 	prise.addEventListener("click", function() {
@@ -500,7 +531,15 @@ popupFunctions(consultation, consultationOverlay, consultationClose);
 	})
 	priseClose.addEventListener("click", function() {
 		prisePopup.style.display = "none";
-		document.body.style.overflow = '';		    
+		document.body.style.overflow = '';	
+		let mainform = document.getElementsByClassName("mainForm");
+		for(let i = 0; i < mainform.length; i++){
+			let input = mainForm[i].getElementsByTagName('input');
+		for(let i = 0; i < input.length; i++){
+				input[i].value = ''
+				// очищаем поля ввода
+			}	    
+		}
 	})  
 
 	function closePopupScroll(){
@@ -508,6 +547,14 @@ popupFunctions(consultation, consultationOverlay, consultationClose);
 			if(e.target == prisePopup) {
 				prisePopup.style.display = "none";
 				document.body.style.overflow = '';	
+			}
+			let mainform = document.getElementsByClassName("mainForm");
+		for(let i = 0; i < mainform.length; i++){
+			let input = mainForm[i].getElementsByTagName('input');
+			for(let i = 0; i < input.length; i++){
+				input[i].value = ''
+				// очищаем поля ввода
+		}
 			}
 		})	
 	}closePopupScroll()

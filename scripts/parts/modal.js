@@ -10,9 +10,11 @@ function modal(){
 
 	 	prise = document.querySelector(".fixed-gift"),
 	 	prisePopup = document.querySelector(".popup-gift"),
-	 	priseClose = document.getElementsByClassName("popup-close")[1];
+	 	priseClose = document.getElementsByClassName("popup-close")[1],
+	 	formFirst = document.getElementById("formFirst"),
+	 	formSecond = document.getElementById("formForSend");
 
-function popupFunctions(buttons, popup_design, popup_close){
+function popupFunctions(buttons, popup_design, popup_close, formS){
 	for (let i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener("click", function(){
 	 		popup_design.style.display = "block";
@@ -21,17 +23,30 @@ function popupFunctions(buttons, popup_design, popup_close){
 	}
 	popup_close.addEventListener("click", function() {
 		popup_design.style.display = "none";
-		document.body.style.overflow = '';
+		document.body.style.overflow = '';		
+			let input = formS.getElementsByTagName('input');
+			for(let i = 0; i < input.length; i++){
+					input[i].value = '';
+					// очищаем поля ввода
+			}
+		
 	})
 	window.addEventListener("click", function(e){
 		if(e.target == popup_design) {
 			popup_design.style.display = "none";
 			document.body.style.overflow = '';	
-		}
+		}	
+
+		let input = formS.getElementsByTagName('input');
+		for(let i = 0; i < input.length; i++){
+				input[i].value = '';
+				// очищаем поля ввода
+			}
+		
 	})
 }
-popupFunctions(buttons, popup_design, popup_close);
-popupFunctions(consultation, consultationOverlay, consultationClose);
+popupFunctions(buttons, popup_design, popup_close, formFirst);
+popupFunctions(consultation, consultationOverlay, consultationClose, formSecond);
 
 
 	prise.addEventListener("click", function() {
@@ -41,7 +56,15 @@ popupFunctions(consultation, consultationOverlay, consultationClose);
 	})
 	priseClose.addEventListener("click", function() {
 		prisePopup.style.display = "none";
-		document.body.style.overflow = '';		    
+		document.body.style.overflow = '';	
+		let mainform = document.getElementsByClassName("mainForm");
+		for(let i = 0; i < mainform.length; i++){
+			let input = mainForm[i].getElementsByTagName('input');
+		for(let i = 0; i < input.length; i++){
+				input[i].value = ''
+				// очищаем поля ввода
+			}	    
+		}
 	})  
 
 	function closePopupScroll(){
@@ -49,6 +72,14 @@ popupFunctions(consultation, consultationOverlay, consultationClose);
 			if(e.target == prisePopup) {
 				prisePopup.style.display = "none";
 				document.body.style.overflow = '';	
+			}
+			let mainform = document.getElementsByClassName("mainForm");
+		for(let i = 0; i < mainform.length; i++){
+			let input = mainForm[i].getElementsByTagName('input');
+			for(let i = 0; i < input.length; i++){
+				input[i].value = ''
+				// очищаем поля ввода
+		}
 			}
 		})	
 	}closePopupScroll()

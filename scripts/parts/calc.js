@@ -10,6 +10,7 @@ function calc(){
       secondForm = 0,
       discount = false,
       thirdForm = 0;
+ 
 
 
       //доп услуги
@@ -59,37 +60,40 @@ function calc(){
         sizePrice = 0;
       }
 
-      document.getElementById('size').addEventListener('change', function() {
+      document.getElementById('size').addEventListener('change', function() {    
+if(sizePrice == 0 || materialPrice == 0){
+          totalValue.innerHTML = 0;
+       } else {
+          if(promocode.value == "IWANTPOPART"){
+            totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+          }else{
             totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
-             if(materialPrice == 0){
-              totalValue.innerHTML = 0;
-             }
-           if( promocode.value == "IWANTPOPART"){
-             totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
            }
-         })
-
-     document.getElementById('material').addEventListener('change', function(){
-
-            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
-
-      if(sizePrice == 0){
-              totalValue.innerHTML = 0;
-      }
-      if( promocode.value == "IWANTPOPART"){
-        totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
        }
-      })
-     document.getElementById('options').addEventListener('change', function(){
 
+     })
+
+     document.getElementById('material').addEventListener('change', function(){       
+if(sizePrice == 0 || materialPrice == 0){
+          totalValue.innerHTML = 0;
+       } else {
+          if(promocode.value == "IWANTPOPART"){
+            totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+          }else{
+            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
+           }
+       }
+
+     })
+     document.getElementById('options').addEventListener('change', function(){
     if(sizePrice == 0 || materialPrice == 0){
           totalValue.innerHTML = 0;
        } else {
-        if(promocode.value == "IWANTPOPART"){
-      totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
-    }else{
-        totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
-     }
+          if(promocode.value == "IWANTPOPART"){
+            totalValue.innerHTML = Math.floor((sizePrice + materialPrice + casingPrice) * 0.7)
+          }else{
+            totalValue.innerHTML = Math.floor(sizePrice + materialPrice + casingPrice);
+           }
        }
 
      })

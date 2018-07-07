@@ -16,7 +16,6 @@ window.addEventListener('DOMContentLoaded', function() {
 	ajax();
 	accordion();
 	filter();
-	filter();
 	sezes();
 	mask();
 
