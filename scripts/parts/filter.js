@@ -1,5 +1,3 @@
-'use strict';
-
 function filter() {
 	var portfolioMenu = document.getElementsByClassName('portfolio-menu')[0],
 	    portfolio_selectors = portfolioMenu.getElementsByTagName('li'),

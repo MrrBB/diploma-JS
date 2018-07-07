@@ -1,40 +1,31 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 window.addEventListener('DOMContentLoaded', function() {
+	window.calc = require('../parts/calc.js');
 	let accordion = require('../parts/accordion.js');
 	let ajax = require('../parts/ajax.js');
 	let burger = require('../parts/burger.js');
-	let calc = require('../parts/calc.js');
 	let filter = require('../parts/filter.js');
-	let mask = require('../parts/mask.js');
+	window.mask = require('../parts/mask.js');
 	let modal = require('../parts/modal.js');
 	let sezes = require('../parts/sizes.js');
 	let slider = require('../parts/slider.js');
 
-
+ calc();
 	slider();
 	modal();
 	ajax();
 	accordion();
 	filter();
 	filter();
-	calc();
 	sezes();
 	mask();
 
+console.log(calc)
 })
 
 
 
-
-
-
-
-
-
-
 },{"../parts/accordion.js":2,"../parts/ajax.js":3,"../parts/burger.js":4,"../parts/calc.js":5,"../parts/filter.js":6,"../parts/mask.js":7,"../parts/modal.js":8,"../parts/sizes.js":9,"../parts/slider.js":10}],2:[function(require,module,exports){
-'use strict';
-
 function accordion() {
   var acc = document.getElementsByClassName('accordion-heading');
 
@@ -124,27 +115,142 @@ function ajax(){
 module.exports = ajax;
 
 },{}],4:[function(require,module,exports){
-function burgerMenu(){
-  let burgerMenu = document.querySelector(".burger-menu"),
-      burgerMenuButton = document.querySelector('.burger');
+function modal(){
+   let buttons = document.querySelectorAll(".button-design"),
+      popup_design = document.querySelector('.popup-design'),
+      popup_close = document.getElementsByClassName("popup-close")[2],
 
-      burgerMenuButton.onclick = menuShow;
-      burgerMenu.onmouseover = menuShow;
-      burgerMenuButton.onmouseout = menuHide;
+      consultation = document.querySelectorAll('.button-consultation'),
+      consultationClose = document.getElementsByClassName("popup-close")[0],
+      popup_content= document.getElementsByClassName("popup-content")[0],
+      consultationOverlay = document.querySelector(".popup-consultation"),
 
-      function menuShow(){
-         burgerMenu.style.display = "block";
+      prise = document.querySelector(".fixed-gift"),
+      prisePopup = document.querySelector(".popup-gift"),
+      priseClose = document.getElementsByClassName("popup-close")[1];
+
+function popupFunctions(buttons, popup_design, popup_close){
+   for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function(){
+         popup_design.style.display = "block";
+         document.body.style.overflow = 'hidden';        
+      })
+   }
+   popup_close.addEventListener("click", function() {
+      popup_design.style.display = "none";
+      document.body.style.overflow = '';
+   })
+   window.addEventListener("click", function(e){
+      if(e.target == popup_design) {
+         popup_design.style.display = "none";
+         document.body.style.overflow = '';  
       }
-      function menuHide(){
-         burgerMenu.style.display = "none";
+   })
+}
+popupFunctions(buttons, popup_design, popup_close);
+popupFunctions(consultation, consultationOverlay, consultationClose);
+
+
+   prise.addEventListener("click", function() {
+      prise.style.display = "none";
+      prisePopup.style.display = "block";
+      document.body.style.overflow = 'hidden';  
+   })
+   priseClose.addEventListener("click", function() {
+      prisePopup.style.display = "none";
+      document.body.style.overflow = '';         
+   })  
+
+   function closePopupScroll(){
+      window.addEventListener("click", function(e){
+         if(e.target == prisePopup) {
+            prisePopup.style.display = "none";
+            document.body.style.overflow = '';  
+         }
+      }) 
+   }closePopupScroll()
+
+
+   //подгрузака блоков
+let loadButton = document.getElementsByClassName('button-transparent')[0];
+   loadDivs = document.getElementsByClassName('removeBlocks');
+
+loadButton.addEventListener("click", function(){
+   for (let i = 0; i < loadDivs.length; i++) {        
+      loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+      loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+      loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+      loadDivs[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+   }
+   loadButton.style.display = "none";
+})
+
+
+
+
+//bottom modal 
+let buttonsScroll = document.getElementsByTagName('button');
+for (let i = 0 ; i < buttonsScroll.length; i++){
+   buttonsScroll[i].addEventListener('click', function() {
+   var my_div = newDiv = null;
+
+     function addElement() {
+       let newDiv = document.createElement("div");
+           newDiv.classList.add('checkforScroll');
+          my_div = document.getElementById("footer");
+          document.body.insertBefore(newDiv, my_div);
+         }addElement()
+   })
+}
+window.onscroll = function() {   
+   if (document.body.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight && document.querySelector('.checkforScroll') === null  )  {
+   let prise = document.querySelector(".fixed-gift"),
+      prisePopup = document.querySelector(".popup-gift"),
+      priseClose = document.getElementsByClassName("popup-close")[1];
+
+      prise.style.display = "none";
+      prisePopup.style.display = "block";
+      document.body.style.overflow = 'hidden';  
+
+   priseClose.addEventListener("click", function() {
+      prisePopup.style.display = "none";
+      document.body.style.overflow = '';         
+   });  
+
+
+   }
+}
+
+window.onload = function() {
+   window.setTimeout(slowAlert, 60000);
+      function slowAlert() {
+         if(document.querySelector('.checkforScroll') === null ){
+      let consultation = document.querySelectorAll('.button-consultation'),
+         consultationClose = document.getElementsByClassName("popup-close")[0],
+         popup_content= document.getElementsByClassName("popup-content")[0],
+         consultationOverlay = document.querySelector(".popup-consultation");
+                  consultationOverlay.style.display = "block";
+                  document.body.style.overflow = 'hidden';        
+            consultationClose.addEventListener("click", function() {
+               consultationOverlay.style.display = "none";
+               document.body.style.overflow = '';
+            })
+            window.addEventListener("click", function(e){
+               if(e.target == consultationOverlay) {
+                  consultationOverlay.style.display = "none";
+                  document.body.style.overflow = '';  
+               }
+            })
+            }
       }
 
-} 
-module.exports = burgerMenu;
+   
+}
+
+} modal()
 },{}],5:[function(require,module,exports){
 function calc(){
-  let
-      picSize = document.getElementById('size').value,
+  let picSize = document.getElementById('size').value,
       material   = document.getElementById('material').value,
       additionalServices   = document.getElementById('options').value,
       totalValue = document.getElementsByClassName("calc-price")[0],
@@ -209,9 +315,9 @@ function calc(){
              if(materialPrice == 0){
               totalValue.innerHTML = 0;
              }
-       if( promocode.value == "IWANTPOPART"){
-         totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
-       }
+           if( promocode.value == "IWANTPOPART"){
+             totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
+           }
          })
 
      document.getElementById('material').addEventListener('change', function(){
@@ -249,8 +355,6 @@ function calc(){
 module.exports = calc;
 
 },{}],6:[function(require,module,exports){
-'use strict';
-
 function filter() {
 	var portfolioMenu = document.getElementsByClassName('portfolio-menu')[0],
 	    portfolio_selectors = portfolioMenu.getElementsByTagName('li'),
@@ -492,22 +596,22 @@ function sizes(){
 	let sizesBlocks = document.getElementsByClassName("sizes-block"),
 		imgs = document.querySelectorAll(".sizes-block img");
 
-			for(let i = 0; i < sizesBlocks.length; i++){
-				let divsSizes = sizesBlocks[i].getElementsByTagName('p')
+		for(let i = 0; i < sizesBlocks.length; i++){
+			let divsSizes = sizesBlocks[i].getElementsByTagName('p')
 
-			sizesBlocks[i].addEventListener("mouseover", function(){
-				for(let i = 0; i <divsSizes.length; i++){
-					divsSizes[i].style.display = "none"
-				}
-			})
-			sizesBlocks[i].addEventListener("mouseout", function(){
-				for(let i = 0; i <divsSizes.length; i++){
-					divsSizes[i].style.display = "block"
-				}
-			})
-
-		
+		sizesBlocks[i].addEventListener("mouseover", function(){
+			for(let i = 0; i <divsSizes.length; i++){
+				divsSizes[i].style.display = "none"
 			}
+		})
+		sizesBlocks[i].addEventListener("mouseout", function(){
+			for(let i = 0; i <divsSizes.length; i++){
+				divsSizes[i].style.display = "block"
+			}
+		})
+
+	
+		}
 }
 module.exports = sizes;
 

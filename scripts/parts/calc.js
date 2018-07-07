@@ -1,6 +1,5 @@
 function calc(){
-  let
-      picSize = document.getElementById('size').value,
+  let picSize = document.getElementById('size').value,
       material   = document.getElementById('material').value,
       additionalServices   = document.getElementById('options').value,
       totalValue = document.getElementsByClassName("calc-price")[0],
@@ -65,9 +64,9 @@ function calc(){
              if(materialPrice == 0){
               totalValue.innerHTML = 0;
              }
-       if( promocode.value == "IWANTPOPART"){
-         totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
-       }
+           if( promocode.value == "IWANTPOPART"){
+             totalValue.innerHTML = Math.floor(totalValue.innerHTML * 0.7)
+           }
          })
 
      document.getElementById('material').addEventListener('change', function(){

@@ -1,5 +1,3 @@
-'use strict';
-
 function accordion() {
   var acc = document.getElementsByClassName('accordion-heading');
 
