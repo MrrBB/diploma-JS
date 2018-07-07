@@ -516,14 +516,13 @@ function popupFunctions(buttons, popup_design, popup_close, formS){
 		if(e.target == popup_design) {
 			popup_design.style.display = "none";
 			document.body.style.overflow = '';	
-		}	
-
 		let input = formS.getElementsByTagName('input');
 		for(let i = 0; i < input.length; i++){
 				input[i].value = '';
 				// очищаем поля ввода
 			}
 		
+		}	
 	})
 }
 popupFunctions(buttons, popup_design, popup_close, formFirst);
